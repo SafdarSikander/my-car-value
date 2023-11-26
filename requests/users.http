@@ -22,7 +22,7 @@ PATCH http://localhost:3000/auth/2
 Content-Type: application/json
 
 {
-  "email": "safdar111@yahoo.com"
+  "password": "2121"
 }
 ###
 
