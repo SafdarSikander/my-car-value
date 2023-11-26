@@ -38,6 +38,6 @@ export class UsersService {
     if (!user) {
       throw new Error('User not found');
     }
-    return this.repo.delete(id);
+    return await this.repo.delete(id);
   }
 }

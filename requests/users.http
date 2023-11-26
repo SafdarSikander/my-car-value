@@ -8,3 +8,11 @@ Content-Type: application/json
 }
 ###
 
+### Get user by Id
+GET http://localhost:3000/auth/12
+
+### Get user by email
+GET http://localhost:3000/auth?email=safdar11@yahoo.com
+
+### Delete user
+DELETE http://localhost:3000/auth/1
