@@ -16,3 +16,13 @@ GET http://localhost:3000/auth?email=safdar11@yahoo.com
 
 ### Delete user
 DELETE http://localhost:3000/auth/1
+
+### Update user
+PATCH http://localhost:3000/auth/2
+Content-Type: application/json
+
+{
+  "email": "safdar111@yahoo.com"
+}
+###
+
