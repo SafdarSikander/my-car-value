@@ -9,16 +9,16 @@ Content-Type: application/json
 ###
 
 ### Get user by Id
-GET http://localhost:3000/auth/12
+GET http://localhost:3000/auth/2
 
 ### Get user by email
 GET http://localhost:3000/auth?email=safdar11@yahoo.com
 
 ### Delete user
-DELETE http://localhost:3000/auth/1
+DELETE http://localhost:3000/auth/11
 
 ### Update user
-PATCH http://localhost:3000/auth/2
+PATCH http://localhost:3000/auth/211
 Content-Type: application/json
 
 {
