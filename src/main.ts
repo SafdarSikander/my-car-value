@@ -9,11 +9,6 @@ async function bootstrap() {
       keys: ['this is encryption string'],
     }),
   );
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-    }),
-  );
   await app.listen(3000);
 }
 bootstrap();
