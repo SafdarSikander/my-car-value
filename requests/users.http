@@ -18,6 +18,9 @@ Content-Type: application/json
 }
 ###
 
+### Get signin in user
+GET http://localhost:3000/auth/whoami
+
 ### Get user by Id
 GET http://localhost:3000/auth/2
 
