@@ -6,17 +6,24 @@ import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 describe('AuthService', () => {
   let service: AuthService;
+  const users: User[] = [];
   let fakeUsersService: Partial<UsersService>;
   beforeEach(async () => {
     // create fake service of UserService
     fakeUsersService = {
-      find: () => Promise.resolve([]),
-      create: (email: string, password: string) =>
-        Promise.resolve({
-          id: 1,
+      find: (email) => {
+        const filteredUsers = users.filter((user) => user.email === email);
+        return Promise.resolve(filteredUsers);
+      },
+      create: (email: string, password: string) => {
+        const user = {
+          id: Math.floor(Math.random() * 999999),
           email,
           password,
-        } as User),
+        } as User;
+        users.push(user);
+        return Promise.resolve(user);
+      },
     };
     const module = await Test.createTestingModule({
       providers: [
@@ -56,35 +63,18 @@ describe('AuthService', () => {
   });
 
   it('should throw if signin is called with an unused email', async () => {
-    await expect(service.signin('safdar@yahoo.com', '123456')).rejects.toThrow(
-      NotFoundException,
-    );
+    await expect(
+      service.signin('safdar123@yahoo.com', '123456'),
+    ).rejects.toThrow(NotFoundException);
   });
 
   it('should allow user to login with valid username and password', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        {
-          id: 1,
-          email: 'safdar11@yahoo.com',
-          password:
-            'b8f9f4564617f5c6.82a1913daa2f5e850a727f9e369d2e830ba6282f43dfc0a4927dbd07935bd67e',
-        } as User,
-      ]);
+    await service.signup('safdar11@yahoo.com', '123');
     const user = await service.signin('safdar11@yahoo.com', '123');
     expect(user).toBeDefined();
   });
 
   it('should give me an error if I try to login with wrong password', async () => {
-    fakeUsersService.find = () =>
-      Promise.resolve([
-        {
-          id: 1,
-          email: 'safdar11@yahoo.com',
-          password:
-            'b8f9f4564617f5c6.82a1913daa2f5e850a727f9e369d2e830ba6282f43dfc0a4927dbd07935bd67e',
-        } as User,
-      ]);
     await expect(service.signin('safdar11@yahoo.com', '1234')).rejects.toThrow(
       BadRequestException,
     );
