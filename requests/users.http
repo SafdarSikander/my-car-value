@@ -8,6 +8,16 @@ Content-Type: application/json
 }
 ###
 
+### Signin user
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+  "email": "safdar11@yahoo.com",
+  "password": "123"
+}
+###
+
 ### Get user by Id
 GET http://localhost:3000/auth/2
 
