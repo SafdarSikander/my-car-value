@@ -3,7 +3,7 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "safdar11@yahoo.com",
+    "email": "safdar1111@yahoo.com",
     "password": "123"
 }
 ###
@@ -13,7 +13,7 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-  "email": "safdar11@yahoo.com",
+  "email": "safdar1111@yahoo.com",
   "password": "123"
 }
 ###
@@ -36,3 +36,8 @@ Content-Type: application/json
 }
 ###
 
+### Set Cookie
+GET http://localhost:3000/auth/colors/red
+
+### Get Cookie
+GET http://localhost:3000/auth/colors
